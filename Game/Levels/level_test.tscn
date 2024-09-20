@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://x46oh3ihqjl1"]
+
+[ext_resource type="PackedScene" uid="uid://cc0eyde1k8o05" path="res://Game/Car/car.tscn" id="2_1tcpa"]
+[ext_resource type="PackedScene" uid="uid://dfloc0hk76864" path="res://Game/Obstacules/cone.tscn" id="2_ukaq5"]
+[ext_resource type="PackedScene" uid="uid://bcfabpsi5li1x" path="res://Game/GUI/hud.tscn" id="3_txv1k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0aj0"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eidi5"]
+size = Vector2(50, 50)
+
+[sub_resource type="Environment" id="Environment_0kcpw"]
+background_mode = 1
+background_color = Color(0.759864, 0.650336, 0.634614, 1)
+ambient_light_color = Color(0.787759, 0.787759, 0.787759, 1)
+
+[node name="level_test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 29)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_s0aj0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_eidi5")
+
+[node name="Cone" parent="." instance=ExtResource("2_ukaq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57485, -0.0846934, -0.0841594)
+
+[node name="Cone2" parent="." instance=ExtResource("2_ukaq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79373, -0.0846934, -0.186809)
+
+[node name="CarTest" parent="." instance=ExtResource("2_1tcpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.271723, 0)
+collision_mask = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0kcpw")
+
+[node name="HUD" parent="." instance=ExtResource("3_txv1k")]
+
+[editable path="CarTest"]
