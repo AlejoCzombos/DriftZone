@@ -4,3 +4,7 @@
 
 [node name="ScoreManager" type="Node"]
 script = ExtResource("1_fx728")
+
+[node name="DriftTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DriftTimer" to="." method="_on_drift_timer_timeout"]

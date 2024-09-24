@@ -1,4 +1,4 @@
-class_name score_manager extends Node
+class_name ScoreManager extends Node
 
 @onready var player_car : Car
 
@@ -8,17 +8,22 @@ func _ready() -> void:
 var current_score: float = 0
 
 func calculate_score(angle: float, velocity: float):
-	Signals.update_current_rotation.emit(angle)
-	Signals.update_current_velocity.emit(velocity * 2)
-	if player_car.is_drifting:
-		$DriftTimer.stop()
-		var score = absf(angle) * velocity * 0.1
-		current_score += score
-		Signals.update_score.emit(current_score)
-	else:
-		if $DriftTimer.is_stopped():
-			$DriftTimer.start()
+	$DriftTimer.stop()
+	var score = absf(angle) * velocity * 0.1
+	current_score += score
+	Signals.update_score.emit(current_score)
+
+func apply_score() -> void:
+	if $DriftTimer.is_stopped() and current_score > 0:
+		$DriftTimer.start()
+
+func lose_score() -> void:
+	print("puntuacion perdida")
+	Signals.failed_score.emit()
+	current_score = 0
 
 func _on_drift_timer_timeout() -> void:
-	Signals.delete_score.emit()
+	print("puntiacion aplicada")
+	$DriftTimer.stop()
+	Signals.apply_score.emit()
 	current_score = 0

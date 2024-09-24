@@ -256,7 +256,7 @@ material = SubResource("StandardMaterial3D_oq8wj")
 radial_segments = 8
 rings = 4
 
-[node name="Car" type="RigidBody3D" groups=["Car", "Obstaculs"]]
+[node name="Car" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 7
 mass = 6.0
@@ -326,3 +326,7 @@ draw_pass_1 = SubResource("SphereMesh_k1qj2")
 transform = Transform3D(1, 0, 0, 0, 0.711511, 0.702675, 0, -0.702675, 0.711511, 0, 10.6679, 10.8021)
 
 [node name="ScoreManager" parent="." instance=ExtResource("3_ykcuf")]
+
+[node name="DriftTimer" type="Timer" parent="ScoreManager"]
+
+[connection signal="timeout" from="ScoreManager/DriftTimer" to="ScoreManager" method="_on_drift_timer_timeout"]
