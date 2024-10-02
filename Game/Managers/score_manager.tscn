@@ -6,5 +6,11 @@
 script = ExtResource("1_fx728")
 
 [node name="DriftTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaitFaild" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="DriftTimer" to="." method="_on_drift_timer_timeout"]
+[connection signal="timeout" from="WaitFaild" to="." method="_on_wait_faild_timeout"]

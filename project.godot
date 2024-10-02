@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*res://Game/Autoloads/signals.gd"
+Globals="*res://Game/Autoloads/globals.gd"
 
 [gui]
 

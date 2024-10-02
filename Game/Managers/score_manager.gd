@@ -1,29 +1,30 @@
 class_name ScoreManager extends Node
 
 @onready var player_car : Car
+@onready var wait_faild: Timer = $WaitFaild
+@onready var drift_timer: Timer = $DriftTimer
 
 func _ready() -> void:
 	player_car = get_parent()
 
-var current_score: float = 0
-
 func calculate_score(angle: float, velocity: float):
-	$DriftTimer.stop()
-	var score = absf(angle) * velocity * 0.1
-	current_score += score
-	Signals.update_score.emit(current_score)
+	if wait_faild.is_stopped():
+		var new_score = absf(angle) * velocity * 0.1
+		Globals.current_score += new_score
+		Signals.update_current_score.emit(Globals.current_score)
 
 func apply_score() -> void:
-	if $DriftTimer.is_stopped() and current_score > 0:
-		$DriftTimer.start()
+	if drift_timer.is_stopped() and Globals.current_score > 0:
+		drift_timer.start()
 
 func lose_score() -> void:
-	print("puntuacion perdida")
-	Signals.failed_score.emit()
-	current_score = 0
+	wait_faild.start()
+	if Globals.current_score != 0:
+		print("puntuacion perdida")
+		Signals.failed_score.emit()
+		Globals.current_score = 0
 
 func _on_drift_timer_timeout() -> void:
 	print("puntiacion aplicada")
-	$DriftTimer.stop()
 	Signals.apply_score.emit()
-	current_score = 0
+	Globals.set_total_score()

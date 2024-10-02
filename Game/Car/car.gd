@@ -30,14 +30,15 @@ func state_controller(new_state: STATE) -> void:
 		return
 	match new_state:
 		STATE.IDLE:
-			print("Idle")
+			pass
+			#print("Idle")
 		STATE.DRIVING:
 			score_manager.apply_score()
-			print("Andando")
+			#print("Andando")
 			$GPUParticles3D.emitting = false
 			$GPUParticles3D2.emitting = false
 		STATE.DRIFTING:
-			print("drifteando")
+			#print("drifteando")
 			$GPUParticles3D.emitting = true
 			$GPUParticles3D2.emitting = true
 		STATE.CRASHED:
