@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3hrrnmyviuu4"]
+
+[ext_resource type="PackedScene" uid="uid://cbyup5ir1yxnj" path="res://Assets/Props/light_pole.blend" id="1_3yo83"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvfud"]
+size = Vector3(1, 10.4887, 0.339233)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_mask = 7
+mass = 5.0
+
+[node name="light_pole" parent="." instance=ExtResource("1_3yo83")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.24815, -0.00152588)
+shape = SubResource("BoxShape3D_nvfud")

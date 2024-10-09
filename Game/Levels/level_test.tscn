@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://x46oh3ihqjl1"]
+[gd_scene load_steps=9 format=3 uid="uid://x46oh3ihqjl1"]
 
+[ext_resource type="PackedScene" uid="uid://d3hrrnmyviuu4" path="res://Game/Props/simple_light_pole.tscn" id="1_1bllm"]
 [ext_resource type="PackedScene" uid="uid://cc0eyde1k8o05" path="res://Game/Car/car.tscn" id="2_1tcpa"]
 [ext_resource type="PackedScene" uid="uid://dfloc0hk76864" path="res://Game/Obstacules/cone.tscn" id="2_ukaq5"]
 [ext_resource type="PackedScene" uid="uid://bcfabpsi5li1x" path="res://Game/GUI/hud.tscn" id="3_txv1k"]
+[ext_resource type="PackedScene" uid="uid://ymntat0v5xs3" path="res://Game/Obstacules/cone2.tscn" id="5_kibaf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0aj0"]
 size = Vector3(50, 0.5, 50)
@@ -29,6 +31,9 @@ shape = SubResource("BoxShape3D_s0aj0")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("PlaneMesh_eidi5")
 
+[node name="RigidBody3D" parent="Ground/MeshInstance3D" instance=ExtResource("1_1bllm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.367)
+
 [node name="Cone" parent="." instance=ExtResource("2_ukaq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57485, -0.0846934, -0.0841594)
 
@@ -43,5 +48,8 @@ collision_mask = 3
 environment = SubResource("Environment_0kcpw")
 
 [node name="HUD" parent="." instance=ExtResource("3_txv1k")]
+
+[node name="RigidBody3D" parent="." instance=ExtResource("5_kibaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.50422)
 
 [editable path="CarTest"]
