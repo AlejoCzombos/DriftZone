@@ -7,7 +7,6 @@ var current_score: float = 0 :
 		return current_score
 	set(value):
 		current_score = value
-		print(value)
 
 func get_total_score() -> float:
 	return total_score

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxo2wekf7js8"]
+
+[ext_resource type="PackedScene" uid="uid://b5lur37b0drjf" path="res://Assets/World/parking.blend" id="1_aka8p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bmuch"]
+size = Vector3(60.0572, 0.554565, 89.4514)
+
+[node name="Parking" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.222717, 0)
+shape = SubResource("BoxShape3D_bmuch")
+
+[node name="parking" parent="." instance=ExtResource("1_aka8p")]

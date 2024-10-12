@@ -249,9 +249,11 @@ alpha_curve = SubResource("CurveTexture_ookuy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq8wj"]
 transparency = 1
+diffuse_mode = 3
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_k1qj2"]
+lightmap_size_hint = Vector2i(17, 9)
 material = SubResource("StandardMaterial3D_oq8wj")
 radial_segments = 8
 rings = 4

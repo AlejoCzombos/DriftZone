@@ -71,6 +71,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	wheel_front_left.rotation.y = rotation_direction * deg_to_rad(drift_angle) * 2
 	wheel_front_right.rotation.y = rotation_direction * deg_to_rad(drift_angle) * 2
 	
+	print(push_force.length())
+	
 	apply_central_impulse(forward * push_force.length())
 	apply_torque_impulse(Vector3(0, rotation_direction * rotation_force, 0))
 	camera_follows()
