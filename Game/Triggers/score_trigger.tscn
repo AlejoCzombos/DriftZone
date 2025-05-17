@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://134dk4gt3jpp"]
+
+[ext_resource type="Script" path="res://Game/Triggers/score_trigger.gd" id="1_msyct"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f05d3"]
+height = 4.30464
+radius = 7.92003
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_brow5"]
+height = 4.30464
+radius = 6.61951
+
+[node name="ScoreTrigger" type="Node3D"]
+script = ExtResource("1_msyct")
+
+[node name="ExitArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38044, 0)
+shape = SubResource("CylinderShape3D_f05d3")
+
+[node name="EntryArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntryArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38044, 0)
+shape = SubResource("CylinderShape3D_brow5")
+
+[connection signal="body_exited" from="ExitArea" to="." method="_on_exit_area_body_exited"]
+[connection signal="body_entered" from="EntryArea" to="." method="_on_entry_area_body_entered"]

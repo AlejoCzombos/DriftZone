@@ -71,9 +71,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	wheel_front_left.rotation.y = rotation_direction * deg_to_rad(drift_angle) * 2
 	wheel_front_right.rotation.y = rotation_direction * deg_to_rad(drift_angle) * 2
 	
-	print(push_force.length())
 	
-	apply_central_impulse(forward * push_force.length())
+	# Marcha atras y adelante
+	if (push_force.z < 0):
+		apply_central_impulse(forward * push_force.length())
+	else:
+		apply_central_impulse(-forward * push_force.length())
+	
 	apply_torque_impulse(Vector3(0, rotation_direction * rotation_force, 0))
 	camera_follows()
 
@@ -97,7 +101,7 @@ func get_input(delta) -> void:
 	if Input.get_action_strength("accelerate"):
 		push_force = Vector3.FORWARD * engine_force
 	if Input.get_action_strength("brake"):
-		push_force = Vector3.BACK * (engine_force * 0.4)
+		push_force = Vector3.BACK * (engine_force * 0.7)
 	if Input.get_action_strength("turn_left"):
 		rotation_direction += 1
 	if Input.get_action_strength("turn_right"):
